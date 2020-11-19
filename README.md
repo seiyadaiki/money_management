@@ -1,24 +1,40 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### usersテーブル
 
-Things you may want to cover:
+| Column              | Type    | Options     |
+| ------------------- | ------- | ----------- |
+| nickname            | string  | null: false |
+| email               | string  | null: false |
+| encrypted_password  | string  | null: false |
+| name                | string  | null: false |
+| name_kana           | string  | null: false |
+| birthday            | date    | null: false |
 
-* Ruby version
+### Association
+- has_many :used_monies
+- has_one  :goal
 
-* System dependencies
+### used_moniesテーブル
 
-* Configuration
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| when             | string     | null: false                    |
+| where            | string     |                                |
+| what             | string     |                                |
+| way_id           | integer    | null: false                    |
+| how_much         | integer    | null: false                    |
+| user             | references | null: false, foreign_key: true |
 
-* Database creation
+### Association
+- belongs_to :user
 
-* Database initialization
+### goalsテーブル
 
-* How to run the test suite
+| Column     | Type        | Options                        |
+| ---------- | ----------- | ------------------------------ |
+| saving     | integer     | null: false                    |
+| user       | references  | null: false, foreign_key: true |
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Association
+- belongs_to :user
